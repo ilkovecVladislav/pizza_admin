@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 
 import Input from 'components/form/Input';
+import login from 'services/auth';
 import { Container, Title, Form, SubmitButton } from './LogInPage.style';
 import { logIn } from './state/reducer';
 
@@ -26,8 +27,9 @@ const LogIn = (): JSX.Element => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = () => {
+  const onSubmit = (values: FormValues) => {
     dispatch(logIn());
+    login(values);
     history.push('/ingredients');
   };
 
